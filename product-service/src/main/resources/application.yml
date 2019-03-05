@@ -1,0 +1,15 @@
+server:
+  port: 10001
+eureka:
+  instance:
+    hostname: localhost
+    port: 8761
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+    # 访问路径可以显示IP
+    prefer-ip-address: true
+    # 自定义instance-id
+    instance-id: ${spring.application.name}:${server.port}
+spring:
+  application:
+    name: product-service

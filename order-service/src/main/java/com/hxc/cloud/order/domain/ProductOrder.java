@@ -25,4 +25,6 @@ public class ProductOrder implements Serializable {
     private Integer productId;
 
     private BigDecimal amount;
+
+    private Integer serverPort;
 }

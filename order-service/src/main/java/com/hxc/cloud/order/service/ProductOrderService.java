@@ -37,7 +37,7 @@ public class ProductOrderService {
                 .setProductId(productId)
                 .setTradeTime(new Date())
                 .setUserId(userId)
-                .setAmount((BigDecimal)map.get("price"));
+                .setServerPort((Integer)map.get("serverPort"));
         log.info("saveOrder productId = {} userId = {} order = {}", productId, userId, productOrder.toString());
         return productOrder;
     }

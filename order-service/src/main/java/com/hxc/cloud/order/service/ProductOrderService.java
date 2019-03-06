@@ -1,5 +1,7 @@
 package com.hxc.cloud.order.service;
 
+import com.alibaba.fastjson.JSON;
+import com.hxc.cloud.client.ProductFeignClient;
 import com.hxc.cloud.constant.AppConstant;
 import com.hxc.cloud.order.domain.ProductOrder;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +23,17 @@ import java.util.UUID;
 @Slf4j
 public class ProductOrderService {
 
+    /**
+     * Ribbon 方式调用
+     */
     @Autowired
     private RestTemplate restTemplate;
+
+    /**
+     * Feign 方式调用
+     */
+    @Autowired
+    private ProductFeignClient productFeignClient;
 
     /**
      * 保存订单
@@ -32,6 +43,9 @@ public class ProductOrderService {
      */
     public ProductOrder saveOrder(Integer productId, Integer userId) {
         Map map = restTemplate.getForObject("http://" + AppConstant.PRODUCT_SERVICE + "/api/v1/product/get/" + productId, Map.class);
+        log.info("ribbon 调用 str = {}", JSON.toJSONString(map));
+        String str = productFeignClient.get(productId);
+        log.info("fiegn 调用 str = {}", str);
         ProductOrder productOrder = new ProductOrder()
                 .setTradeNo(UUID.randomUUID().toString())
                 .setProductId(productId)

@@ -18,7 +18,8 @@ product-service:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
-# 全局配置feign超时时间，如果不配置fiegn的超时时间是10秒，连接时间是60秒，但是由于feign默认的hystrix的超时时间是1秒，导致最终feign的超时时间为1秒
+# 全局配置feign超时时间，如果不配置fiegn的超时时间是10秒，连接时间是60秒，
+# 但是由于feign默认的hystrix的超时时间是1秒，导致最终feign的超时时间为1秒 ，可以通过feign.hystrix.enable=false关闭hystrix
 feign:
   client:
     config:

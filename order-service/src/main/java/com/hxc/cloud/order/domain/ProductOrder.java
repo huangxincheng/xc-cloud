@@ -16,7 +16,7 @@ import java.util.Date;
 @Accessors(chain = true)
 public class ProductOrder implements Serializable {
 
-    private Long tradeNo;
+    private String tradeNo;
 
     private Date tradeTime;
 

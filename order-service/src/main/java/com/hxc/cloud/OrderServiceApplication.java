@@ -2,6 +2,7 @@ package com.hxc.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * Author: huangxincheng
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * <p>
  **/
 @SpringBootApplication
+@EnableDiscoveryClient
 public class OrderServiceApplication {
 
     public static void main(String[] args) {

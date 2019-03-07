@@ -42,9 +42,10 @@ public class ProductOrderService {
      * @return
      */
     public ProductOrder saveOrder(Integer productId, Integer userId) {
-        Map map = restTemplate.getForObject("http://" + AppConstant.PRODUCT_SERVICE + "/api/v1/product/get/" + productId, Map.class);
-        log.info("ribbon 调用 str = {}", JSON.toJSONString(map));
+//        Map map = restTemplate.getForObject("http://" + AppConstant.PRODUCT_SERVICE + "/api/v1/product/get/" + productId, Map.class);
+//        log.info("ribbon 调用 str = {}", JSON.toJSONString(map));
         String str = productFeignClient.get(productId);
+        Map map = JSON.parseObject(str, Map.class);
         log.info("fiegn 调用 str = {}", str);
         ProductOrder productOrder = new ProductOrder()
                 .setTradeNo(UUID.randomUUID().toString())

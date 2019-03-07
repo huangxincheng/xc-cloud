@@ -27,3 +27,6 @@ feign:
         # 设置超时连接时间为2秒 和 读时间为2秒
         connectTimeout: 2000
         readTimeout: 2000
+  hystrix:
+    # 开启hystrix
+    enabled: true

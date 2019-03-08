@@ -28,5 +28,18 @@ feign:
         connectTimeout: 2000
         readTimeout: 2000
   hystrix:
-    # 开启hystrix
+    # feign开启hystrix
     enabled: true
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # hystrix 超时时间为1秒
+            timeoutInMilliseconds: 1000
+        timeout:
+          # 开启hystrix超时机制
+          enabled: true

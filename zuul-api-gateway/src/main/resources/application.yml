@@ -12,11 +12,12 @@ spring:
   application:
     name: zuul-api-gateway
 zuul:
-  # 忽略除了routes里面配置所有服务。
+
   routes:
     order-service: /apigateway/order/**
     product-service: /apigateway/product/**
   ignored-services: *
+  #  忽略除了routes里面配置所有服务。
   #  ignored-services: /*-service/**
 
 

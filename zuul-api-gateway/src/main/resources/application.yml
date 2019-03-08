@@ -1,0 +1,22 @@
+server:
+  port: 9000
+eureka:
+  instance:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    # 访问路径可以显示IP
+    prefer-ip-address: true
+    # 自定义instance-id
+    instance-id: ${spring.application.name}:${server.port}
+spring:
+  application:
+    name: zuul-api-gateway
+zuul:
+  # 忽略除了routes里面配置所有服务。
+  routes:
+    order-service: /apigateway/order/**
+    product-service: /apigateway/product/**
+  ignored-services: *
+  #  ignored-services: /*-service/**
+
+

@@ -16,6 +16,8 @@ zuul:
   routes:
     order-service: /apigateway/order/**
     product-service: /apigateway/product/**
+  # 设置zuul 不过过滤请求头的敏感词  如 "Cookie", "Set-Cookie", "Authorization"
+  sensitive-headers:
   ignored-services: *
   #  忽略除了routes里面配置所有服务。
   #  ignored-services: /*-service/**

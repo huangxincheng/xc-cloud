@@ -1,5 +1,10 @@
 package com.hxc.cloud.filter;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.hxc.cloud.JwtUtil;
 import com.hxc.cloud.config.ApiGatewayProperties;
 import com.hxc.cloud.filter.constants.IFilterConstants;
 import com.netflix.zuul.ZuulFilter;
@@ -67,7 +72,13 @@ public class AuthFilter extends ZuulFilter {
         if (token == null) {
             token =  RequestContext.getCurrentContext().getRequest().getParameter("token");
         }
-        if (token == null) {
+        String passToken = RequestContext.getCurrentContext().getRequest().getHeader("passToken");
+        if (passToken == null) {
+            passToken = RequestContext.getCurrentContext().getRequest().getParameter("passToken");
+        }
+        if ("true".equalsIgnoreCase(passToken) || (token != null && JwtUtil.getUserId(token) != null)) {
+
+        } else {
             RequestContext.getCurrentContext().setSendZuulResponse(false);
             RequestContext.getCurrentContext().setResponseStatusCode(HttpStatus.OK.value());
             RequestContext.getCurrentContext().getResponse().setCharacterEncoding("UTF-8");

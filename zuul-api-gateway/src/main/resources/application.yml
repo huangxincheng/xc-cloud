@@ -36,7 +36,3 @@ api:
       path: /apigateway/order
       auth: true
 
-
-
-
-

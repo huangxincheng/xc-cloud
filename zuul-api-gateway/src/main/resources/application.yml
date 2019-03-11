@@ -8,16 +8,31 @@ eureka:
     prefer-ip-address: true
     # 自定义instance-id
     instance-id: ${spring.application.name}:${server.port}
+
+
 spring:
   application:
     name: zuul-api-gateway
-zuul:
 
+
+zuul:
   routes:
     order-service: /apigateway/order/**
     product-service: /apigateway/product/**
-  ignored-services: *
+  # 设置zuul 不过过滤请求头的敏感词  如 "Cookie", "Set-Cookie", "Authorization"
+  sensitive-headers:
   #  忽略除了routes里面配置所有服务。
   #  ignored-services: /*-service/**
+  ignored-services: '*'
 
+
+# ACL 访问控制列表
+api:
+  gateway:
+    uris[0]:
+      path: /apigateway/product/api/v1/product/get/1
+      auth: true
+    uris[1]:
+      path: /apigateway/order
+      auth: true
 

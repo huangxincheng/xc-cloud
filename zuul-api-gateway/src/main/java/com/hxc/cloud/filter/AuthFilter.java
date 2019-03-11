@@ -16,6 +16,8 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import static com.hxc.cloud.filter.constants.IFilterConstants.AUTH_FILTER_ORDER;
+
 /**
  * Author: huangxincheng
  * <p>
@@ -48,7 +50,7 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public int filterOrder() {
-        return IFilterConstants.AUTH_FILTER_ORDER;
+        return AUTH_FILTER_ORDER;
     }
 
     /**
@@ -58,7 +60,14 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public boolean shouldFilter() {
-       return apiGatewayProperties.isAuth(RequestContext.getCurrentContext().getRequest().getRequestURI());
+        String passToken = RequestContext.getCurrentContext().getRequest().getHeader("passToken");
+        if (passToken == null) {
+            passToken = RequestContext.getCurrentContext().getRequest().getParameter("passToken");
+        }
+        if ("true".equalsIgnoreCase(passToken)) {
+            return false;
+        }
+        return apiGatewayProperties.isAuth(RequestContext.getCurrentContext().getRequest().getRequestURI());
     }
 
     /**
@@ -72,11 +81,7 @@ public class AuthFilter extends ZuulFilter {
         if (token == null) {
             token =  RequestContext.getCurrentContext().getRequest().getParameter("token");
         }
-        String passToken = RequestContext.getCurrentContext().getRequest().getHeader("passToken");
-        if (passToken == null) {
-            passToken = RequestContext.getCurrentContext().getRequest().getParameter("passToken");
-        }
-        if ("true".equalsIgnoreCase(passToken) || (token != null && JwtUtil.getUserId(token) != null)) {
+        if ((token != null && JwtUtil.getUserId(token) != null)) {
 
         } else {
             RequestContext.getCurrentContext().setSendZuulResponse(false);

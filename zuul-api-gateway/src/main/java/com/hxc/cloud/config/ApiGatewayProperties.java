@@ -31,6 +31,37 @@ public class ApiGatewayProperties {
         return false;
     }
 
+    public boolean isRateLimiter(String path) {
+        List<ApiService> list = uris.stream()
+                .filter(apiService -> { return path.startsWith(apiService.path); })
+                .collect(Collectors.toList());
+        if (list != null && list.size() > 0) {
+            return list.get(0).getRateNum() > 0 ? true : false;
+        }
+        return false;
+    }
+
+    public int getRateNum(String path) {
+        List<ApiService> list = uris.stream()
+                .filter(apiService -> { return path.startsWith(apiService.path); })
+                .collect(Collectors.toList());
+        if (list != null && list.size() > 0) {
+            return list.get(0).getRateNum();
+        }
+        return 0;
+    }
+
+    public int getRateSecond(String path) {
+        List<ApiService> list = uris.stream()
+                .filter(apiService -> { return path.startsWith(apiService.path); })
+                .collect(Collectors.toList());
+        if (list != null && list.size() > 0) {
+            return list.get(0).getRateSecond();
+        }
+        return 1;
+    }
+
+
     public static class ApiService {
 
         /**
@@ -42,6 +73,16 @@ public class ApiGatewayProperties {
          * 是否需要登录认证
          */
         private boolean auth = false;
+
+        /**
+         * 限流数
+         */
+        private int rateNum;
+
+        /**
+         * 限流时间 单位秒
+         */
+        private int rateSecond = 1;
 
         public boolean isAuth() {
             return auth;
@@ -57,6 +98,22 @@ public class ApiGatewayProperties {
 
         public void setPath(String path) {
             this.path = path;
+        }
+
+        public int getRateNum() {
+            return rateNum;
+        }
+
+        public void setRateNum(int rateNum) {
+            this.rateNum = rateNum;
+        }
+
+        public int getRateSecond() {
+            return rateSecond;
+        }
+
+        public void setRateSecond(int rateSecond) {
+            this.rateSecond = rateSecond;
         }
     }
 

@@ -89,7 +89,6 @@ public class AuthFilter extends ZuulFilter {
             RequestContext.getCurrentContext().setResponseStatusCode(HttpStatus.OK.value());
             RequestContext.getCurrentContext().getResponse().setCharacterEncoding("UTF-8");
             RequestContext.getCurrentContext().getResponse().setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-//            RequestContext.getCurrentContext().getResponse().setHeader("content-type", "application/json;charset=UTF-8");
             RequestContext.getCurrentContext().setResponseBody("{\"code\":-1,\"msg\":\"认证失败\"}");
         }
         return null;

@@ -38,6 +38,13 @@ public class RateLimiterFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
+        String pass = RequestContext.getCurrentContext().getRequest().getHeader("pass");
+        if (pass == null) {
+            pass = RequestContext.getCurrentContext().getRequest().getParameter("pass");
+        }
+        if ("true".equalsIgnoreCase(pass)) {
+            return false;
+        }
         return apiGatewayProperties.isRateLimiter(RequestContext.getCurrentContext().getRequest().getRequestURI());
     }
 

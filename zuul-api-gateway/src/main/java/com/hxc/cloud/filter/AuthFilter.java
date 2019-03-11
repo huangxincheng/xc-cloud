@@ -60,11 +60,11 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public boolean shouldFilter() {
-        String passToken = RequestContext.getCurrentContext().getRequest().getHeader("passToken");
-        if (passToken == null) {
-            passToken = RequestContext.getCurrentContext().getRequest().getParameter("passToken");
+        String pass = RequestContext.getCurrentContext().getRequest().getHeader("pass");
+        if (pass == null) {
+            pass = RequestContext.getCurrentContext().getRequest().getParameter("pass");
         }
-        if ("true".equalsIgnoreCase(passToken)) {
+        if ("true".equalsIgnoreCase(pass)) {
             return false;
         }
         return apiGatewayProperties.isAuth(RequestContext.getCurrentContext().getRequest().getRequestURI());

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Author: huangxincheng
@@ -36,6 +37,11 @@ public class ProductApi {
         response.setProductInfo(product);
         response.setServerPort(serverPort);
         log.info("ProducApi serverPory = {} productInfo = {}", serverPort, product);
+        try {
+            TimeUnit.SECONDS.sleep(20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return response;
     }
 

@@ -10,6 +10,7 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
 
 
+
 spring:
   application:
     name: zuul-api-gateway
@@ -27,6 +28,13 @@ zuul:
   #  忽略除了routes里面配置所有服务。
   #  ignored-services: /*-service/**
   ignored-services: '*'
+  # 开启重试机制
+  retryable: true
+  host:
+    # socket  timeot
+    socket-timeout-millis: 10000
+    # connect timeot
+    connect-timeout-millis: 10000
 
 
 # ACL 访问控制列表
@@ -35,10 +43,8 @@ api:
     uris[0]:
       path: /apigateway/product/api/v1/product/get/1
       auth: true
-      rate_num: 2
+      rate_num: 0
       rate_second: 100
     uris[1]:
       path: /apigateway/order
       auth: true
-
-

@@ -21,6 +21,11 @@ public class ApiGatewayProperties {
 
     private List<ApiService> uris;
 
+    /**
+     * 是否需要登录认证
+     * @param path
+     * @return
+     */
     public boolean isAuth(String path) {
         List<ApiService> list = uris.stream()
                 .filter(apiService -> { return path.startsWith(apiService.path); })
@@ -31,6 +36,11 @@ public class ApiGatewayProperties {
         return false;
     }
 
+    /**
+     * 是否需要限流处理
+     * @param path
+     * @return
+     */
     public boolean isRateLimiter(String path) {
         List<ApiService> list = uris.stream()
                 .filter(apiService -> { return path.startsWith(apiService.path); })
@@ -41,24 +51,19 @@ public class ApiGatewayProperties {
         return false;
     }
 
-    public int getRateNum(String path) {
+    /**
+     * 获取具体的ApiService
+     * @param path
+     * @return
+     */
+    public ApiService getApiService(String path) {
         List<ApiService> list = uris.stream()
                 .filter(apiService -> { return path.startsWith(apiService.path); })
                 .collect(Collectors.toList());
         if (list != null && list.size() > 0) {
-            return list.get(0).getRateNum();
+            return list.get(0);
         }
-        return 0;
-    }
-
-    public int getRateSecond(String path) {
-        List<ApiService> list = uris.stream()
-                .filter(apiService -> { return path.startsWith(apiService.path); })
-                .collect(Collectors.toList());
-        if (list != null && list.size() > 0) {
-            return list.get(0).getRateSecond();
-        }
-        return 1;
+        return null;
     }
 
 

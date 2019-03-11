@@ -50,9 +50,10 @@ public class RateLimiterFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        int rateNum = apiGatewayProperties.getRateNum(RequestContext.getCurrentContext().getRequest().getRequestURI());
-        int rateSecond = apiGatewayProperties.getRateSecond(RequestContext.getCurrentContext().getRequest().getRequestURI());
-        boolean rateLimiter = RateLimitUtil.isRateLimiter(FILTER_LIMIT_KEY_PRE + RequestContext.getCurrentContext().getRequest().getRequestURI(), rateNum, rateSecond);
+        ApiGatewayProperties.ApiService apiService = apiGatewayProperties.getApiService(RequestContext.getCurrentContext().getRequest().getRequestURI());
+        int rateNum = apiService.getRateNum();
+        int rateSecond = apiService.getRateSecond();
+        boolean rateLimiter = RateLimitUtil.isRateLimiter(FILTER_LIMIT_KEY_PRE + apiService.getPath(), rateNum, rateSecond);
         if (rateLimiter) {
             //过滤该请求，不往下级服务去转发请求，到此结束
             RequestContext.getCurrentContext().setSendZuulResponse(false);

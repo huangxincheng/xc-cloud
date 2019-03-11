@@ -32,9 +32,9 @@ zuul:
   retryable: true
   host:
     # socket  timeot
-    socket-timeout-millis: 10000
     # connect timeot
-    connect-timeout-millis: 10000
+    socket-timeout-millis: 10000
+    connect-timeout-millis: 2000
 
 
 # ACL 访问控制列表
@@ -66,4 +66,4 @@ hystrix:
 #ribbon超时全局配置
 ribbon:
   ReadTimeout: 5000
-  ConnectTimeout: 5000
+  ConnectTimeout: 2000

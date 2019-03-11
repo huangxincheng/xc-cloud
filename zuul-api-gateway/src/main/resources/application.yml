@@ -71,5 +71,5 @@ ribbon:
 #ribbon超时局部配置
 product-service:
   ribbon:
-    ReadTimeout: 5000
+    ReadTimeout: 2000
     ConnectTimeout: 2000

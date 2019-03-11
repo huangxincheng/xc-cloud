@@ -14,6 +14,7 @@ import org.apache.http.protocol.RequestContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import static com.hxc.cloud.filter.constants.IFilterConstants.AUTH_FILTER_ORDER;
@@ -87,7 +88,8 @@ public class AuthFilter extends ZuulFilter {
             RequestContext.getCurrentContext().setSendZuulResponse(false);
             RequestContext.getCurrentContext().setResponseStatusCode(HttpStatus.OK.value());
             RequestContext.getCurrentContext().getResponse().setCharacterEncoding("UTF-8");
-            RequestContext.getCurrentContext().getResponse().setHeader("content-type", "application/json;charset=UTF-8");
+            RequestContext.getCurrentContext().getResponse().setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+//            RequestContext.getCurrentContext().getResponse().setHeader("content-type", "application/json;charset=UTF-8");
             RequestContext.getCurrentContext().setResponseBody("{\"code\":-1,\"msg\":\"认证失败\"}");
         }
         return null;

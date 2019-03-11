@@ -9,6 +9,7 @@ import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import static com.hxc.cloud.filter.constants.IFilterConstants.FILTER_LIMIT_KEY_PRE;
@@ -59,7 +60,8 @@ public class RateLimiterFilter extends ZuulFilter {
             RequestContext.getCurrentContext().setSendZuulResponse(false);
             RequestContext.getCurrentContext().setResponseStatusCode(HttpStatus.OK.value());
             RequestContext.getCurrentContext().getResponse().setCharacterEncoding("UTF-8");
-            RequestContext.getCurrentContext().getResponse().setHeader("content-type", "application/json;charset=UTF-8");
+//            RequestContext.getCurrentContext().getResponse().setHeader("content-type", "application/json;charset=UTF-8");
+            RequestContext.getCurrentContext().getResponse().setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             RequestContext.getCurrentContext().setResponseBody("{\"code\":-2,\"msg\":\"请求太多,您已被挤出.\"}");
         }
         return null;

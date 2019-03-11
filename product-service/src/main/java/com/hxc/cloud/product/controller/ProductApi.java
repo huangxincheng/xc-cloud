@@ -38,7 +38,7 @@ public class ProductApi {
         response.setServerPort(serverPort);
         log.info("ProducApi serverPory = {} productInfo = {}", serverPort, product);
         try {
-            TimeUnit.SECONDS.sleep(20);
+            TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -48,3 +48,22 @@ api:
     uris[1]:
       path: /apigateway/order
       auth: true
+
+
+#hystrix全局超时配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # hystrix默认超时时间为1秒,这里设置成6秒
+            timeoutInMilliseconds: 5000
+        timeout:
+          # 开启hystrix超时机制
+          enabled: true
+
+#ribbon超时全局配置
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000

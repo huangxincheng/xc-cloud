@@ -67,3 +67,9 @@ hystrix:
 ribbon:
   ReadTimeout: 5000
   ConnectTimeout: 2000
+
+#ribbon超时局部配置
+product-service:
+  ribbon:
+    ReadTimeout: 5000
+    ConnectTimeout: 2000

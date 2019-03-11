@@ -33,6 +33,7 @@ zuul:
   host:
     # socket  timeot
     # connect timeot
+    # 通过制定url的形式配置的超时时间
     socket-timeout-millis: 10000
     connect-timeout-millis: 2000
 
@@ -66,10 +67,11 @@ hystrix:
 #ribbon超时全局配置
 ribbon:
   ReadTimeout: 5000
+  SocketTimeout: 10000
   ConnectTimeout: 2000
 
 #ribbon超时局部配置
 product-service:
   ribbon:
-    ReadTimeout: 2000
+    ReadTimeout: 5000
     ConnectTimeout: 2000

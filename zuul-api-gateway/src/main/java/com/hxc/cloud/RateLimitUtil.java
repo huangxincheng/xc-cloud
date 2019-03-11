@@ -24,7 +24,9 @@ public class RateLimitUtil {
                     "    return 0;\n" +
                     "else\n" +
                     "    redis.call('INCRBY', key, 1)\n" +
-                    "    redis.call('EXPIRE', key, ARGV[2])\n" +
+                    "    if curentLimit == 0 then\n" +
+                    "       redis.call('EXPIRE', key, ARGV[2])\n" +
+                    "    end\n" +
                     "    return curentLimit + 1\n" +
                     "end";
 

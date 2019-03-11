@@ -36,7 +36,7 @@ api:
       path: /apigateway/product/api/v1/product/get/1
       auth: true
       rate_num: 2
-      rate_second: 1000
+      rate_second: 100
     uris[1]:
       path: /apigateway/order
       auth: true

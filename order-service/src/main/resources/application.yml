@@ -11,7 +11,11 @@ eureka:
 spring:
   application:
     name: order-service
-
+  zipkin:
+    base-url: http://www.limaila.com:9411/
+  sleuth:
+    sampler:
+      probability: 1
 
 # 配置product-service 使用随机方式的rule，默认是轮训的rule，线上最好使用默认的
 product-service:

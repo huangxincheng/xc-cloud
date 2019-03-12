@@ -11,3 +11,9 @@ eureka:
 spring:
   application:
     name: product-service
+  zipkin:
+    base-url: http://www.limaila.com:9411/
+  sleuth:
+    sampler:
+      probability: 1
+

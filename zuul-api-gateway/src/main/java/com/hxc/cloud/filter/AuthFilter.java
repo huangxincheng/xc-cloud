@@ -1,23 +1,17 @@
 package com.hxc.cloud.filter;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.hxc.cloud.JwtUtil;
 import com.hxc.cloud.config.ApiGatewayProperties;
-import com.hxc.cloud.filter.constants.IFilterConstants;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import org.apache.http.protocol.RequestContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
-import static com.hxc.cloud.filter.constants.IFilterConstants.AUTH_FILTER_ORDER;
+import static com.hxc.cloud.filter.constants.IFilterConstants.PRE_AUTH_FILTER_ORDER;
 
 /**
  * Author: huangxincheng
@@ -51,7 +45,7 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public int filterOrder() {
-        return AUTH_FILTER_ORDER;
+        return PRE_AUTH_FILTER_ORDER;
     }
 
     /**

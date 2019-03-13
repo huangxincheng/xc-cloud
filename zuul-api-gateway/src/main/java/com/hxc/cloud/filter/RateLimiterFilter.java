@@ -5,7 +5,6 @@ import com.hxc.cloud.config.ApiGatewayProperties;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import static com.hxc.cloud.filter.constants.IFilterConstants.FILTER_LIMIT_KEY_PRE;
-import static com.hxc.cloud.filter.constants.IFilterConstants.RATE_LIMITER_FILTER_ORDER;
+import static com.hxc.cloud.filter.constants.IFilterConstants.PRE_RATE_LIMITER_FILTER_ORDER;
 
 /**
  * Author: huangxincheng
@@ -34,7 +33,7 @@ public class RateLimiterFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return RATE_LIMITER_FILTER_ORDER;
+        return PRE_RATE_LIMITER_FILTER_ORDER;
     }
 
     @Override

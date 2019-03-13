@@ -13,12 +13,17 @@ public class IFilterConstants {
     /**
      * 用户认证过滤器顺序
      */
-    public static final int AUTH_FILTER_ORDER = 3;
+    public static final int PRE_AUTH_FILTER_ORDER = 3;
 
     /**
      * 限流过滤器顺序
      */
-    public static final int RATE_LIMITER_FILTER_ORDER = -5;
+    public static final int PRE_RATE_LIMITER_FILTER_ORDER = -5;
+
+    /**
+     * 全局返回值顺序
+     */
+    public static final int POST_GLOBAL_RESPONSE_FILTER_ORDER  = -3;
 
     /*
        <!-------------------------------FILTER LIMIT KEY PRE ----------------------------->

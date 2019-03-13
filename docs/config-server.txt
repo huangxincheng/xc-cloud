@@ -2,6 +2,7 @@
 访问
 http://localhost:9100/dev/product-service.yml
 
+    {lable} : 分支 默认master
 
 {config-server.address}:{config-server.port}/{lable}/{spring.application.name}.yml
 {config-server.address}:{config-server.port}/{lable}/{spring.application.name}.properties

@@ -1,7 +1,8 @@
 网关：
 
         认证：
-
+                com.hxc.cloud.filter.AuthFilter
         限流：
-
+                com.hxc.cloud.filter.RateLimiterFilter
         全局返回：
+                com.hxc.cloud.filter.GlobalResponseFilter

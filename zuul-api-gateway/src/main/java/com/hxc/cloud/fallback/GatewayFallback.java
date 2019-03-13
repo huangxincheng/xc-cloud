@@ -31,6 +31,13 @@ public class GatewayFallback implements FallbackProvider {
     @Override
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         log.error("GatewayFallback fallbackResponse", cause);
+        if (cause instanceof RuntimeException) {
+            return this.getClientHttpResponse(cause.getMessage());
+        }
+        return this.getClientHttpResponse("系统繁忙,请稍后再试.");
+    }
+
+    private ClientHttpResponse getClientHttpResponse(final String msg) {
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() throws IOException {
@@ -54,7 +61,8 @@ public class GatewayFallback implements FallbackProvider {
 
             @Override
             public InputStream getBody() throws IOException {
-               return new ByteArrayInputStream("{\"code\":-3,\"msg\":\"系统繁忙,请稍后再试.\"}".getBytes());
+//                return new ByteArrayInputStream("{\"code\":-3,\"msg\":\"系统繁忙,请稍后再试.\"}".getBytes());
+                return new ByteArrayInputStream(("{\"code\":-3,\"msg\":" +msg + "}").getBytes());
             }
 
             @Override

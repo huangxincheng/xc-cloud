@@ -49,17 +49,9 @@ zipkin 数据持久化mysql
       `error_count` BIGINT
     ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
 
-    ALTER TABLE zipkin_dependencies ADD UNIQUE KEY(`day`, `parent`, `child`);
-
-
-
-docker 启动zipkin server
-
-        docker run -p 9411:9411 \
-        -e "STORAGE_TYPE=mysql" \
-        -e "MYSQL_DB=zipkin" \
-        -e "MYSQL_USER=hxc" \
         -e "MYSQL_PASS=hxc" \
         -e "MYSQL_HOST=www.limaila.com" \
         -e "MYSQL_TCP_PORT=3306" \
         openzipkin/zipkin
+
+

@@ -42,7 +42,7 @@ zuul:
 api:
   gateway:
     uris[0]:
-      path: /apigateway/product/api/v1/product/get/1
+      path: /apigateway/product/api/v1/product/get
       auth: true
       rate_num: 0
       rate_second: 100

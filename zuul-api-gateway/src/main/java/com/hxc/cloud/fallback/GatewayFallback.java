@@ -1,5 +1,6 @@
 package com.hxc.cloud.fallback;
 
+import com.hxc.cloud.common.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
@@ -31,7 +32,7 @@ public class GatewayFallback implements FallbackProvider {
     @Override
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         log.error("GatewayFallback fallbackResponse", cause);
-        if (cause instanceof RuntimeException) {
+        if (cause instanceof AppException) {
             return this.getClientHttpResponse(cause.getMessage());
         }
         return this.getClientHttpResponse("系统繁忙,请稍后再试.");

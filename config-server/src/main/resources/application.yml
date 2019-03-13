@@ -1,0 +1,24 @@
+server:
+  port: 9100
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/huangxincheng/xc-cloud-config.git
+          username: huangxincheng
+          password: a6610588
+          timeout: 5
+          default-label: master
+
+
+eureka:
+  instance:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    # 访问路径可以显示IP
+    prefer-ip-address: true
+    # 自定义instance-id
+    instance-id: ${spring.application.name}:${server.port}

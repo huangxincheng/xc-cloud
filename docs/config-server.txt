@@ -1,0 +1,17 @@
+
+访问
+http://localhost:9100/dev/product-service.yml
+
+
+{config-server.address}:{config-server.port}/{lable}/{spring.application.name}.yml
+{config-server.address}:{config-server.port}/{lable}/{spring.application.name}.properties
+{config-server.address}:{config-server.port}/{lable}/{spring.application.name}.json
+
+
+访问
+http://localhost:9100/product-service-dev.yml
+
+
+{config-server.address}:{config-server.port}/{spring.application.name}-{lable}.yml
+{config-server.address}:{config-server.port}/{spring.application.name}-{lable}.properties
+{config-server.address}:{config-server.port}/{spring.application.name}-{lable}.json

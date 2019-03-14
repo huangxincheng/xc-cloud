@@ -1,6 +1,10 @@
 package com.hxc.cloud.filter;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.hxc.cloud.JwtUtil;
+import com.hxc.cloud.common.response.AppCodeEnum;
+import com.hxc.cloud.common.response.AppResponse;
 import com.hxc.cloud.config.ApiGatewayProperties;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -83,7 +87,8 @@ public class AuthFilter extends ZuulFilter {
             RequestContext.getCurrentContext().setResponseStatusCode(HttpStatus.OK.value());
             RequestContext.getCurrentContext().getResponse().setCharacterEncoding("UTF-8");
             RequestContext.getCurrentContext().getResponse().setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            RequestContext.getCurrentContext().setResponseBody("{\"code\":-1,\"msg\":\"认证失败\"}");
+            AppResponse appResponse = AppResponse.fail(AppCodeEnum.AUTH_FAIL);
+            RequestContext.getCurrentContext().setResponseBody(JSON.toJSONString(appResponse));
         }
         return null;
     }

@@ -1,5 +1,6 @@
 package com.hxc.cloud.product.service;
 
+import com.hxc.cloud.common.exception.AppProductException;
 import com.hxc.cloud.product.domain.ProductInfo;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,7 @@ public class ProductService {
     }
 
     public ProductInfo getProduct(Integer id) {
+//        throw new AppProductException("查询商品失败");
         return pis.get(id - 1);
     }
 

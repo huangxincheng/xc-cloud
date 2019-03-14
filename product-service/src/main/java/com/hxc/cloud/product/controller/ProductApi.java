@@ -1,5 +1,6 @@
 package com.hxc.cloud.product.controller;
 
+import com.hxc.cloud.common.response.AppResponse;
 import com.hxc.cloud.product.domain.ProductInfo;
 import com.hxc.cloud.product.response.ProductResponse;
 import com.hxc.cloud.product.service.ProductService;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Author: huangxincheng
@@ -31,7 +31,7 @@ public class ProductApi {
     private Integer serverPort;
 
     @GetMapping("/get/{id}")
-    public ProductResponse get(@PathVariable Integer id) {
+    public AppResponse get(@PathVariable Integer id) {
         ProductInfo product = productService.getProduct(id);
         ProductResponse response = new ProductResponse();
         response.setProductInfo(product);
@@ -42,7 +42,7 @@ public class ProductApi {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        return response;
+        return AppResponse.ok(response);
     }
 
     @GetMapping("/list")

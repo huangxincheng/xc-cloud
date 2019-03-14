@@ -1,6 +1,9 @@
 package com.hxc.cloud.fallback;
 
+import com.alibaba.fastjson.JSON;
 import com.hxc.cloud.common.exception.AppException;
+import com.hxc.cloud.common.response.AppCodeEnum;
+import com.hxc.cloud.common.response.AppResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
@@ -33,12 +36,17 @@ public class GatewayFallback implements FallbackProvider {
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         log.error("GatewayFallback fallbackResponse", cause);
         if (cause instanceof AppException) {
-            return this.getClientHttpResponse(cause.getMessage());
+            return this.getClientHttpResponse(
+                    AppResponse.fail(
+                            AppCodeEnum.APP_EXCEPTION_FAIL.getCode(),
+                            cause.getMessage()
+                    )
+            );
         }
-        return this.getClientHttpResponse("系统繁忙,请稍后再试.");
+        return this.getClientHttpResponse(AppResponse.fail(AppCodeEnum.SYSTEM_ERROR_FAIL));
     }
 
-    private ClientHttpResponse getClientHttpResponse(final String msg) {
+    private ClientHttpResponse getClientHttpResponse(final AppResponse appResponse) {
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() throws IOException {
@@ -63,7 +71,8 @@ public class GatewayFallback implements FallbackProvider {
             @Override
             public InputStream getBody() throws IOException {
 //                return new ByteArrayInputStream("{\"code\":-3,\"msg\":\"系统繁忙,请稍后再试.\"}".getBytes());
-                return new ByteArrayInputStream(("{\"code\":-3,\"msg\":" +msg + "}").getBytes());
+//                return new ByteArrayInputStream(("{\"code\":-3,\"msg\":" +msg + "}").getBytes());
+                return new ByteArrayInputStream(JSON.toJSONString(appResponse).getBytes());
             }
 
             @Override

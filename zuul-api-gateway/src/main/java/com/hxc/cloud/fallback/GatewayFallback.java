@@ -20,10 +20,11 @@ import java.io.InputStream;
  * Author: huangxincheng
  * <p>
  * <p>
- *     自定义Zuul回退机制处理器。
+ *     路由熔断
+ *      自定义Zuul回退机制处理器。
  **/
 @Slf4j
-//@Component
+@Component
 public class GatewayFallback implements FallbackProvider {
     @Override
     public String getRoute() {
@@ -35,14 +36,6 @@ public class GatewayFallback implements FallbackProvider {
     @Override
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         log.error("GatewayFallback fallbackResponse", cause);
-        if (cause instanceof AppException) {
-            return this.getClientHttpResponse(
-                    AppResponse.fail(
-                            AppCodeEnum.APP_EXCEPTION_FAIL.getCode(),
-                            cause.getMessage()
-                    )
-            );
-        }
         return this.getClientHttpResponse(AppResponse.fail(AppCodeEnum.SYSTEM_ERROR_FAIL));
     }
 

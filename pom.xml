@@ -12,6 +12,8 @@
         <module>product-service</module>
         <module>order-service</module>
         <module>zuul-api-gateway</module>
+        <module>config-server</module>
+        <module>base-common</module>
     </modules>
     <packaging>pom</packaging>
 

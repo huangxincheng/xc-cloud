@@ -1,0 +1,23 @@
+网关：
+
+        认证：
+                com.hxc.cloud.filter.AuthFilter
+        限流：
+                com.hxc.cloud.filter.RateLimiterFilter
+        全局返回：
+                com.hxc.cloud.filter.GlobalResponseFilter
+
+
+
+ACL 访问控制：
+    # ACL 访问控制列表
+    api:
+      gateway:
+        uris[0]:
+          path: /apigateway/product/api/v1/product/get
+          auth: false
+          rate_num: 1000
+          rate_second: 1
+        uris[1]:
+          path: /apigateway/order
+          auth: true

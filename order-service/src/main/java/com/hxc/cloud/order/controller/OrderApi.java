@@ -1,6 +1,7 @@
 package com.hxc.cloud.order.controller;
 
-import com.hxc.cloud.base.BaseResponse;
+import com.hxc.cloud.common.response.AppCodeEnum;
+import com.hxc.cloud.common.response.AppResponse;
 import com.hxc.cloud.order.domain.ProductOrder;
 import com.hxc.cloud.order.service.ProductOrderService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -25,13 +26,13 @@ public class OrderApi {
 
     @RequestMapping("/save/{userId}/{productId}")
     @HystrixCommand(fallbackMethod = "saveFallback")
-    public BaseResponse save(@PathVariable Integer userId, @PathVariable Integer productId) {
+    public AppResponse save(@PathVariable Integer userId, @PathVariable Integer productId) {
         ProductOrder data = productOrderService.saveOrder(userId, productId);
-        return BaseResponse.toSuccess(data);
+        return AppResponse.ok(data);
     }
 
-    public BaseResponse saveFallback(Integer userId, Integer productId){
-        log.error("saveFallback userId = " + userId + ", productId = " + productId);
-        return BaseResponse.toFail("当前访问人次过多,稍后再试");
+    public AppResponse saveFallback(Integer userId, Integer productId, Throwable ex){
+        log.error("[OrderApi] [saveFallback] userId = " + userId + " productId = " + productId, ex);
+        return AppResponse.fail(AppCodeEnum.APP_EXCEPTION_FAIL.getCode(), "保存商品信息失败");
     }
 }

@@ -1,4 +1,4 @@
-package com.hxc.cloud.product.domain;
+package com.hxc.cloud.module.product.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

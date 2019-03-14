@@ -1,6 +1,6 @@
-package com.hxc.cloud.product.response;
+package com.hxc.cloud.module.product;
 
-import com.hxc.cloud.product.domain.ProductInfo;
+import com.hxc.cloud.module.product.domain.ProductInfo;
 import lombok.Data;
 
 import java.io.Serializable;

@@ -16,15 +16,15 @@ import java.io.Serializable;
 @Setter
 @ToString
 @Accessors(chain = true)
-public class AppResponse implements Serializable {
+public class AppResponse<T extends Object> implements Serializable {
 
     private Integer code;
 
     private String msg;
 
-    private Object data;
+    private T data;
 
-    public static AppResponse ok(Object data) {
+    public static <T> AppResponse<T> ok(T data) {
         return new AppResponse()
                 .setCode(AppCodeEnum.SUCCESS.getCode())
                 .setMsg(AppCodeEnum.SUCCESS.getMsg())

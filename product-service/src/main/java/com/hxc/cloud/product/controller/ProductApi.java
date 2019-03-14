@@ -1,9 +1,11 @@
 package com.hxc.cloud.product.controller;
 
+import com.hxc.cloud.common.response.AppCodeEnum;
 import com.hxc.cloud.common.response.AppResponse;
-import com.hxc.cloud.product.domain.ProductInfo;
-import com.hxc.cloud.product.response.ProductResponse;
+import com.hxc.cloud.module.product.ProductResponse;
+import com.hxc.cloud.module.product.domain.ProductInfo;
 import com.hxc.cloud.product.service.ProductService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +33,8 @@ public class ProductApi {
     private Integer serverPort;
 
     @GetMapping("/get/{id}")
-    public AppResponse get(@PathVariable Integer id) {
+    @HystrixCommand(fallbackMethod = "getFallback")
+    public AppResponse<ProductResponse> get(@PathVariable Integer id) {
         ProductInfo product = productService.getProduct(id);
         ProductResponse response = new ProductResponse();
         response.setProductInfo(product);
@@ -43,6 +46,11 @@ public class ProductApi {
 //            e.printStackTrace();
 //        }
         return AppResponse.ok(response);
+    }
+
+    public AppResponse<ProductResponse> getFallback(Integer id) {
+        log.error("[ProductApi] [getFallback] id = " + id);
+        return AppResponse.fail(AppCodeEnum.APP_EXCEPTION_FAIL.getCode(), "查找具体商品失败");
     }
 
     @GetMapping("/list")

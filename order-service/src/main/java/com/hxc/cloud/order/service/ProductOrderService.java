@@ -2,7 +2,11 @@ package com.hxc.cloud.order.service;
 
 import com.alibaba.fastjson.JSON;
 import com.hxc.cloud.client.ProductFeignClient;
+import com.hxc.cloud.common.exception.AppProductException;
+import com.hxc.cloud.common.response.AppCodeEnum;
+import com.hxc.cloud.common.response.AppResponse;
 import com.hxc.cloud.constant.AppConstant;
+import com.hxc.cloud.module.product.ProductResponse;
 import com.hxc.cloud.order.domain.ProductOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,17 +46,17 @@ public class ProductOrderService {
      * @return
      */
     public ProductOrder saveOrder(Integer productId, Integer userId) {
-//        Map map = restTemplate.getForObject("http://" + AppConstant.PRODUCT_SERVICE + "/api/v1/product/get/" + productId, Map.class);
-//        log.info("ribbon 调用 str = {}", JSON.toJSONString(map));
-        String str = productFeignClient.get(productId);
-        Map map = JSON.parseObject(str, Map.class);
-        log.info("fiegn 调用 str = {}", str);
+        AppResponse<ProductResponse> appResponse = productFeignClient.get(productId);
+        log.info("fiegn 调用 appResponse = {}", JSON.toJSONString(appResponse));
+        if (AppCodeEnum.SUCCESS.getCode().intValue() != appResponse.getCode()) {
+            throw new AppProductException("查询商品信息失败");
+        }
         ProductOrder productOrder = new ProductOrder()
                 .setTradeNo(UUID.randomUUID().toString())
                 .setProductId(productId)
                 .setTradeTime(new Date())
                 .setUserId(userId)
-                .setServerPort((Integer)map.get("serverPort"));
+                .setServerPort(appResponse.getData().getServerPort());
         log.info("saveOrder productId = {} userId = {} order = {}", productId, userId, productOrder.toString());
         return productOrder;
     }

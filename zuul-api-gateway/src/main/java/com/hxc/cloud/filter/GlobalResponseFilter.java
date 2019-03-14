@@ -21,7 +21,7 @@ import java.nio.charset.Charset;
  * <p>
  *     全局响应过滤器
  **/
-@Component
+//@Component
 public class GlobalResponseFilter extends ZuulFilter {
     @Override
     public String filterType() {

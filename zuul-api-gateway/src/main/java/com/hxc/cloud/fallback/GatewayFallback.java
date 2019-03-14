@@ -23,7 +23,7 @@ import java.io.InputStream;
  *     自定义Zuul回退机制处理器。
  **/
 @Slf4j
-@Component
+//@Component
 public class GatewayFallback implements FallbackProvider {
     @Override
     public String getRoute() {

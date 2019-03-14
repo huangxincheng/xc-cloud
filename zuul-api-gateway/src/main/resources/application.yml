@@ -29,7 +29,7 @@ zuul:
   #  ignored-services: /*-service/**
   ignored-services: '*'
   # 开启重试机制
-  retryable: true
+  retryable: false
   host:
     # socket  timeot
     # connect timeot
@@ -69,6 +69,10 @@ ribbon:
   ReadTimeout: 3500
   SocketTimeout: 10000
   ConnectTimeout: 1000
+  #对当前服务的重试次数
+  MaxAutoRetries: 0
+  #切换相同Server的次数
+  MaxAutoRetriesNextServer: 0
   #ribbonTimeout = (ReadTimeout + ConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1);
 
 #ribbon超时局部配置

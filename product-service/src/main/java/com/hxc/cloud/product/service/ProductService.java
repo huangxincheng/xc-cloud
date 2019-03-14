@@ -33,8 +33,8 @@ public class ProductService {
     }
 
     public ProductInfo getProduct(Integer id) {
-        throw new AppProductException("查询商品失败");
-//        return pis.get(id - 1);
+//        throw new AppProductException("查询商品失败");
+        return pis.get(id - 1);
     }
 
     public List<ProductInfo> listProduct() {

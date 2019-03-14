@@ -35,7 +35,7 @@ zuul:
     # connect timeot
     # 通过制定url的形式配置的超时时间
     socket-timeout-millis: 10000
-    connect-timeout-millis: 2000
+    connect-timeout-millis: 1000
 
 
 # ACL 访问控制列表
@@ -66,12 +66,13 @@ hystrix:
 
 #ribbon超时全局配置
 ribbon:
-  ReadTimeout: 5000
+  ReadTimeout: 3500
   SocketTimeout: 10000
-  ConnectTimeout: 2000
+  ConnectTimeout: 1000
+  #ribbonTimeout = (ReadTimeout + ConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1);
 
 #ribbon超时局部配置
 product-service:
   ribbon:
-    ReadTimeout: 5000
-    ConnectTimeout: 2000
+    ReadTimeout: 3500
+    ConnectTimeout: 1000

@@ -26,7 +26,10 @@ public class IFilterConstants {
     public static final int POST_GLOBAL_RESPONSE_FILTER_ORDER  = -3;
 
     /*
-       <!-------------------------------FILTER LIMIT KEY PRE ----------------------------->
+       <!-------------------------------FILTER REDIS KEY PRE ----------------------------->
+     */
+    /**
+     * Zuul 限流Redis Key 前缀
      */
     public static final String FILTER_LIMIT_KEY_PRE = "zuul_rate_limiter_pre:";
 }

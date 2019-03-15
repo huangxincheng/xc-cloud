@@ -20,7 +20,7 @@ import java.util.Scanner;
  * <p>
  * <p>
  **/
-public class CodeGenerator {
+public class MybatisPlusCodeGenerator {
 
     /**
      * <p>

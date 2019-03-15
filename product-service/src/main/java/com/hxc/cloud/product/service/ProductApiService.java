@@ -1,6 +1,5 @@
 package com.hxc.cloud.product.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hxc.cloud.common.utils.TransUtil;
 import com.hxc.cloud.module.product.model.ProductInfoVo;
 import com.hxc.cloud.product.entity.ProductInfo;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Author: huangxincheng

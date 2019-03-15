@@ -1,4 +1,4 @@
-package com.hxc.cloud.module.product.domain;
+package com.hxc.cloud.module.product.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class ProductInfo implements Serializable {
+public class ProductInfoVo implements Serializable {
 
     private Integer id;
 

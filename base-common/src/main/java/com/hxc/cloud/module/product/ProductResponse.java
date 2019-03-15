@@ -1,6 +1,6 @@
 package com.hxc.cloud.module.product;
 
-import com.hxc.cloud.module.product.domain.ProductInfo;
+import com.hxc.cloud.module.product.model.ProductInfoVo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 public class ProductResponse implements Serializable {
 
-    private ProductInfo productInfo;
+    private ProductInfoVo productInfo;
 
     private Integer serverPort;
 }

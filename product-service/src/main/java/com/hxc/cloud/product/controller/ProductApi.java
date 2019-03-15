@@ -3,7 +3,7 @@ package com.hxc.cloud.product.controller;
 import com.hxc.cloud.common.response.AppCodeEnum;
 import com.hxc.cloud.common.response.AppResponse;
 import com.hxc.cloud.module.product.ProductResponse;
-import com.hxc.cloud.module.product.domain.ProductInfo;
+import com.hxc.cloud.module.product.model.ProductInfoVo;
 import com.hxc.cloud.product.service.ProductService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class ProductApi {
     @GetMapping("/get/{id}")
     @HystrixCommand(fallbackMethod = "getFallback")
     public AppResponse<ProductResponse> get(@PathVariable Integer id) {
-        ProductInfo product = productService.getProduct(id);
+        ProductInfoVo product = productService.getProduct(id);
         ProductResponse response = new ProductResponse();
         response.setProductInfo(product);
         response.setServerPort(serverPort);
@@ -54,7 +54,7 @@ public class ProductApi {
     }
 
     @GetMapping("/list")
-    public List<ProductInfo> list() {
+    public List<ProductInfoVo> list() {
         return productService.listProduct();
     }
 }

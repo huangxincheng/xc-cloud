@@ -1,0 +1,19 @@
+server:
+  port: 9200
+spring:
+  application:
+    name: msg-center
+
+
+rocketmq:
+  name-server: 47.106.95.198:9876
+  producer:
+    group: msg-center-group
+
+
+msg:
+  msg-topic: msg-topic
+  event-topic: event-topic
+  ext-topic: ext-topic
+  ext-tag: ext-tag
+  delay-topic: delay-topic

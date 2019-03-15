@@ -1,9 +1,6 @@
 package com.hxc.cloud;
 
-import com.hxc.cloud.product.DelayTopicProducer;
-import com.hxc.cloud.product.EventTopicProducer;
-import com.hxc.cloud.product.ExtTopicProducer;
-import com.hxc.cloud.product.MsgTopicProducer;
+import com.hxc.cloud.product.*;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +25,9 @@ public class MsgCenterRunner implements CommandLineRunner {
 
     @Autowired
     private DelayTopicProducer delayTopicProducer;
+
+    @Autowired
+    private OrderlyTopicProducer orderlyTopicProducer;
 
     @Override
     public void run(String... args) throws Exception {

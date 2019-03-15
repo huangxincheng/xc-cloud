@@ -4,7 +4,7 @@ import com.hxc.cloud.common.response.AppCodeEnum;
 import com.hxc.cloud.common.response.AppResponse;
 import com.hxc.cloud.module.product.ProductResponse;
 import com.hxc.cloud.module.product.model.ProductInfoVo;
-import com.hxc.cloud.product.service.ProductService;
+import com.hxc.cloud.product.service.ProductApiService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import java.util.List;
 public class ProductApi {
 
     @Autowired
-    private ProductService productService;
+    private ProductApiService productService;
 
     @Value("${server.port}")
     private Integer serverPort;

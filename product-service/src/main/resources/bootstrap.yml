@@ -9,15 +9,6 @@ spring:
       #profile: prod
   application:
     name: product-service
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      url: jdbc:mysql://www.limaila.com:3306/xc-cloud-product?useUnicode=true&useSSL=false&characterEncoding=utf8
-      username: hxc
-      password: hxc
-      stat-view-servlet:
-        login-username: admin
-        login-password: 123456
 
 
 eureka:
@@ -28,18 +19,4 @@ eureka:
     prefer-ip-address: true
     # 自定义instance-id
     instance-id: ${spring.application.name}:${server.port}
-
-
-mybatis-plus:
-  mapper-locations: classpath:mapper/**/*.xml
-  configuration:
-    map-underscore-to-camel-case: true
-    # dev环境打开 控制台打印SQL
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  global-config:
-    db-config:
-      # 逻辑已删除值(默认为 1)
-      logic-delete-value: 1
-      # 逻辑未删除值(默认为 0)
-      logic-not-delete-value: 0
 

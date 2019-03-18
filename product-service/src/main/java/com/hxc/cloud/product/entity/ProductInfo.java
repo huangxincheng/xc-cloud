@@ -2,6 +2,7 @@ package com.hxc.cloud.product.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -43,4 +44,7 @@ public class ProductInfo implements Serializable {
 
     @Version
     private Integer version;
+
+    @TableLogic
+    private Integer deleted;
 }

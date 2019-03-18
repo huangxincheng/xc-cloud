@@ -37,4 +37,3 @@ mybatis-plus:
     # dev环境打开 控制台打印SQL
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-

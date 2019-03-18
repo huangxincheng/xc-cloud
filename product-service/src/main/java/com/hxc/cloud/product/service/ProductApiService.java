@@ -30,6 +30,7 @@ public class ProductApiService {
 //        );
 //        System.out.println(p);
         ProductInfo productInfo = service.getById(id);
+        service.updateById(productInfo);
         return TransUtil.trans(productInfo, p -> {
             return new ProductInfoVo()
                     .setId(p.getId())

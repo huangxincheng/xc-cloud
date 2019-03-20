@@ -5,17 +5,19 @@ import com.hxc.cloud.client.ProductFeignClient;
 import com.hxc.cloud.common.exception.AppProductException;
 import com.hxc.cloud.common.response.AppCodeEnum;
 import com.hxc.cloud.common.response.AppResponse;
-import com.hxc.cloud.constant.AppConstant;
+import com.hxc.cloud.common.utils.TransUtil;
+import com.hxc.cloud.module.order.model.ProductOrder;
 import com.hxc.cloud.module.product.ProductResponse;
-import com.hxc.cloud.order.domain.ProductOrder;
+import com.hxc.cloud.order.entity.OrderInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -25,7 +27,7 @@ import java.util.UUID;
  **/
 @Service
 @Slf4j
-public class ProductOrderService {
+public class OrderApiService {
 
     /**
      * Ribbon 方式调用
@@ -39,6 +41,9 @@ public class ProductOrderService {
     @Autowired
     private ProductFeignClient productFeignClient;
 
+    @Autowired
+    private IOrderInfoService orderInfoService;
+
     /**
      * 保存订单
      * @param productId
@@ -51,13 +56,23 @@ public class ProductOrderService {
         if (AppCodeEnum.SUCCESS.getCode().intValue() != appResponse.getCode()) {
             throw new AppProductException("查询商品信息失败");
         }
-        ProductOrder productOrder = new ProductOrder()
-                .setTradeNo(UUID.randomUUID().toString())
+        OrderInfo orderInfo = new OrderInfo()
                 .setProductId(productId)
-                .setTradeTime(new Date())
-                .setUserId(userId)
-                .setServerPort(appResponse.getData().getServerPort());
-        log.info("saveOrder productId = {} userId = {} order = {}", productId, userId, productOrder.toString());
-        return productOrder;
+                .setTradeNo(UUID.randomUUID().toString())
+                .setTradeAmount(new BigDecimal(new Random().nextInt(100)))
+                .setTradeTime(LocalDateTime.now())
+                .setUserId(userId);
+        orderInfoService.save(orderInfo);
+        ProductOrder po = TransUtil.trans(orderInfo, o -> {
+            ProductOrder productOrder = new ProductOrder()
+                    .setTradeNo(o.getTradeNo())
+                    .setProductId(o.getProductId())
+                    .setTradeTime(o.getTradeTime())
+                    .setUserId(o.getUserId())
+                    .setServerPort(appResponse.getData().getServerPort());
+            return productOrder;
+        });
+        log.info("saveOrder productId = {} userId = {} order = {}", productId, userId, po.toString());
+        return po;
     }
 }

@@ -2,8 +2,8 @@ package com.hxc.cloud.order.controller;
 
 import com.hxc.cloud.common.response.AppCodeEnum;
 import com.hxc.cloud.common.response.AppResponse;
-import com.hxc.cloud.order.domain.ProductOrder;
-import com.hxc.cloud.order.service.ProductOrderService;
+import com.hxc.cloud.module.order.model.ProductOrder;
+import com.hxc.cloud.order.service.OrderApiService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderApi {
 
     @Autowired
-    private ProductOrderService productOrderService;
+    private OrderApiService productOrderService;
 
     @RequestMapping("/save/{userId}/{productId}")
     @HystrixCommand(fallbackMethod = "saveFallback")

@@ -1,10 +1,11 @@
-package com.hxc.cloud.order.domain;
+package com.hxc.cloud.module.order.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public class ProductOrder implements Serializable {
 
     private String tradeNo;
 
-    private Date tradeTime;
+    private LocalDateTime tradeTime;
 
     private Integer userId;
 

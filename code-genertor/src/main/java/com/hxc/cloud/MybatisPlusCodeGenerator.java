@@ -58,7 +58,11 @@ public class MybatisPlusCodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://www.limaila.com:3306/xc-cloud-product?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        //TODO 1
+        // product
+//        dsc.setUrl("jdbc:mysql://www.limaila.com:3306/xc-cloud-product?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        // order
+        dsc.setUrl("jdbc:mysql://www.limaila.com:3306/xc-cloud-order?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("hxc");
@@ -69,7 +73,7 @@ public class MybatisPlusCodeGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(scanner("模块名"));
 
-        // TODO 1
+        // TODO 2
         pc.setParent("com.hxc.cloud");
         mpg.setPackageInfo(pc);
 

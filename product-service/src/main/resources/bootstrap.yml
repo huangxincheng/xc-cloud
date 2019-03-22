@@ -9,6 +9,9 @@ spring:
       #profile: prod
   application:
     name: product-service
+  datasource:
+    druid:
+      connection-init-sqls: set names utf8mb4
 
 
 eureka:
@@ -19,4 +22,6 @@ eureka:
     prefer-ip-address: true
     # 自定义instance-id
     instance-id: ${spring.application.name}:${server.port}
+
+
 

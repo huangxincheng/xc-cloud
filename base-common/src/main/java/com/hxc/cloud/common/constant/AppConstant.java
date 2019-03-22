@@ -1,4 +1,4 @@
-package com.hxc.cloud.constant;
+package com.hxc.cloud.common.constant;
 
 /**
  * Author: huangxincheng

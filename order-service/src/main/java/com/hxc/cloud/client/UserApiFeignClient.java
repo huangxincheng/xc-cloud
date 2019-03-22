@@ -1,6 +1,6 @@
 package com.hxc.cloud.client;
 
-import com.hxc.cloud.constant.AppConstant;
+import com.hxc.cloud.common.constant.AppConstant;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**

@@ -1,7 +1,7 @@
 package com.hxc.cloud.client;
 
+import com.hxc.cloud.common.constant.AppConstant;
 import com.hxc.cloud.common.response.AppResponse;
-import com.hxc.cloud.constant.AppConstant;
 import com.hxc.cloud.module.product.ProductResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

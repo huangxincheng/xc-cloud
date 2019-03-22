@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @Slf4j
-public class ProductFeignClientFallback implements ProductFeignClient {
+public class ProductApiFeignClientFallback implements ProductApiFeignClient {
     @Override
     public AppResponse<ProductResponse> get(Integer id) {
-        log.error("ProductFeignClient get 异常 发送短信");
+        log.error("ProductApiFeignClient get 异常 发送短信");
         return null;
     }
 
     @Override
     public String list() {
-        log.error("ProductFeignClient list异常 发送短信");
+        log.error("ProductApiFeignClient list异常 发送短信");
         return null;
     }
 }

@@ -1,7 +1,7 @@
 package com.hxc.cloud.order.service;
 
 import com.alibaba.fastjson.JSON;
-import com.hxc.cloud.client.ProductFeignClient;
+import com.hxc.cloud.client.ProductApiFeignClient;
 import com.hxc.cloud.common.exception.AppProductException;
 import com.hxc.cloud.common.response.AppCodeEnum;
 import com.hxc.cloud.common.response.AppResponse;
@@ -16,7 +16,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
@@ -39,7 +38,7 @@ public class OrderApiService {
      * Feign 方式调用
      */
     @Autowired
-    private ProductFeignClient productFeignClient;
+    private ProductApiFeignClient productFeignClient;
 
     @Autowired
     private IOrderInfoService orderInfoService;

@@ -59,10 +59,12 @@ public class MybatisPlusCodeGenerator {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         //TODO 1
-        // product
+        /** product **/
 //        dsc.setUrl("jdbc:mysql://www.limaila.com:3306/xc-cloud-product?useUnicode=true&useSSL=false&characterEncoding=utf8");
-        // order
-        dsc.setUrl("jdbc:mysql://www.limaila.com:3306/xc-cloud-order?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        /**order **/
+//        dsc.setUrl("jdbc:mysql://www.limaila.com:3306/xc-cloud-order?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        /** user **/
+        dsc.setUrl("jdbc:mysql://www.limaila.com:3306/xc-cloud-user?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("hxc");

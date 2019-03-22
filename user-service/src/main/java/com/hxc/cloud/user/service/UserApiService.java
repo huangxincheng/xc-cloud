@@ -51,7 +51,7 @@ public class UserApiService {
         if (b) {
             return AppResponse.ok(UserRegisterResponse.response(UserRegisterResponse.UserRegisterEnum.SUCCESS));
         } else {
-            return AppResponse.ok(UserRegisterResponse.response(UserRegisterResponse.UserRegisterEnum.SYSTEM_ERROR_EXISTI));
+            return AppResponse.ok(UserRegisterResponse.response(UserRegisterResponse.UserRegisterEnum.CREATE_USER_FAIL));
         }
     }
 
@@ -72,7 +72,7 @@ public class UserApiService {
         if (b) {
             return AppResponse.ok(UserActiveResponse.response(UserActiveResponse.UserActiveEnum.SUCCESS));
         } else {
-            return AppResponse.ok(UserActiveResponse.response(UserActiveResponse.UserActiveEnum.SYSTEM_ERROR_EXISTI));
+            return AppResponse.ok(UserActiveResponse.response(UserActiveResponse.UserActiveEnum.ACTIVE_USER_FAIL));
         }
     }
 }

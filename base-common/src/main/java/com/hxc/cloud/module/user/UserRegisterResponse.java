@@ -34,7 +34,7 @@ public class UserRegisterResponse implements Serializable {
 
         EMAIL_AIREADY_EXISTI(-2, "邮箱已存在"),
 
-        SYSTEM_ERROR_EXISTI(-3, "系统繁忙,稍后再试")
+        CREATE_USER_FAIL(-3, "创建用户失败,系统异常")
 
         ;
         private int state;

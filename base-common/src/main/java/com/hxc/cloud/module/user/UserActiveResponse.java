@@ -34,7 +34,7 @@ public class UserActiveResponse implements Serializable {
 
         USER_NOT_EXISTI(-2, "激活失败,不存在此用户信息"),
 
-        SYSTEM_ERROR_EXISTI(-3, "系统繁忙,稍后再试")
+        ACTIVE_USER_FAIL(-3, "激活用户失败,系统异常")
 
         ;
         private int state;

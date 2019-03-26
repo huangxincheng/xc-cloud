@@ -9,6 +9,11 @@ spring:
       #profile: prod
   application:
     name: user-service
+  mail:
+    host: smtp.163.com
+    username: limaila@163.com
+    password: a6610588
+    default-encoding: UTF-8
 
 
 eureka:
@@ -19,6 +24,5 @@ eureka:
     prefer-ip-address: true
     # 自定义instance-id
     instance-id: ${spring.application.name}:${server.port}
-
 
 

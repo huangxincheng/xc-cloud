@@ -6,6 +6,8 @@ import com.hxc.cloud.module.user.UserActiveResponse;
 import com.hxc.cloud.module.user.UserRegisterResponse;
 import com.hxc.cloud.user.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,6 +23,8 @@ public class UserApiService {
     @Autowired
     private IUserInfoService userInfoService;
 
+    @Autowired
+    private JavaMailSender javaMailSender;
     /**
      * 用户注册
      * @param userName 用户名
@@ -47,7 +51,12 @@ public class UserApiService {
                 .setIsActive(false));
 
         //TODO 发送邮件 可采用MQ或者Async
-
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("limaila@163.com");
+        simpleMailMessage.setTo("249270087@qq.com");
+        simpleMailMessage.setSubject("主题1");
+        simpleMailMessage.setText("tx1");
+        javaMailSender.send(simpleMailMessage);
         if (b) {
             return AppResponse.ok(UserRegisterResponse.response(UserRegisterResponse.UserRegisterEnum.SUCCESS));
         } else {

@@ -17,6 +17,7 @@
         <module>code-genertor</module>
         <module>msg-center</module>
         <module>user-service</module>
+        <module>new-api-gateway</module>
     </modules>
     <packaging>pom</packaging>
 
